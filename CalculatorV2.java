@@ -1,5 +1,5 @@
 class Calculator{
-	public static void main(){
+	public static void main(String[] args){
 		System.out.println("Hello from PRN-0227");
 		System.out.println("Simple Java Calculator");
 		boolean exit=false;
