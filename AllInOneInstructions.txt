@@ -1,0 +1,179 @@
+DOCKER INSTALLATION--------
+
+sudo apt-get update
+
+sudo apt-get install apt-transport-https ca-certificates curl gnupg-agent software-properties-common
+
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+sudo apt-key fingerprint 0EBFCD88
+
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+
+sudo apt-get update
+
+sudo apt-get install docker-ce docker-ce-cli containerd.io
+
+DOCKER COMMANDS------
+
+list docker images
+#docker images
+
+search for a docker image
+#docker search imagename
+
+pull an image from dockerhub
+#docker pull imagename
+
+run a docker image in a container
+#docker run -it imagename
+
+list currently running containers
+#docker ps
+
+list inactive and active containers
+#docker ps -a
+
+stop a docker container from another terminal
+#docker stop container-id
+
+commit changes made to a container
+#docker commit -m "message" -a "author" containerid new_imagename
+
+DOCKERFILE------
+
+make a directory and go into it
+#mkdir myimage
+#cd myimage
+
+make dockerfile
+#touch Dockerfile
+
+edit the dockerfile, remember below syntax
+FROM imagename
+MAINTAINER yourname
+RUN work_to_do
+CMD ["echo","successful"]
+
+build dockerfile
+#docker build -t imagename:tag .
+eg (docker build -t myimage:1.0 .)
+
+to run your custom program in docker
+create a c program in your docker directory
+Dockerfile--
+
+FROM ubuntu
+MAINTAINER yourname
+RUN apt-get update
+RUN apt-get install -y gcc
+ADD . /home
+WORKDIR /home
+RUN gcc filename.c
+CMD ["./a.out"]
+
+DOCKER SWARM----
+
+edit /etc/hosts and add the ip addresses of the machines
+
+eg 192.168.1.103  dockermanager	
+
+ping and see if connected	
+
+initialise docker on manager
+#docker swarm init --advertise-addr <manager node IP address>
+
+copy generated token and paste on another system
+
+Deploy Nginx service on Docker Swarm cluster
+#docker service create --name my-web1 --publish 8081:80 --replicas 2 nginx
+
+To see running services on Docker Cluster
+#docker service ls
+
+To see newly deployed service on swarm cluster
+#docker service ps <service name>
+
+To see if nginx service is running properly
+#curl http://dockermanager:8081
+
+To scale services on docker swarm
+#docker service scale <service name>=3
+eg docker service scale my-web1=3 
+
+JENKINS----
+
+install java jdk
+#apt-get install -y openjdk-8-jre
+
+install jenkins
+#wget -q -O - https://pkg.jenkins.io/debian/jenkins-ci.org.key | sudo apt-key add -
+
+#echo deb http://pkg.jenkins.io/debian-stable binary/| sudo tee /etc/apt/sources.list.d/jenkins.list
+
+#sudo apt-get update
+
+#sudo apt-get install jenkins
+
+#sudo systemctl start jenkins
+#sudo systemctl status jenkins
+
+open browser and go to "localhost:8080"
+
+in case of login error, reset password and restart jenkins
+#gedit /var/lib/jenkins/config.xml
+
+Search for the word <useSecurity>true</useSecurity>
+and change the word true to false. 
+
+#systemctl restart jenkins
+
+GIT-----
+
+#sudo apt-get install git-core
+#git config --global user.name "username"
+#git config --global user.email "email"
+#git config --global branch.autosetuprebase always
+
+check your config lists
+#git config –list
+
+create new repository on github and copy the repository link
+
+go to the project directory and init
+#git init
+
+#git add -A
+
+check status of files on the staging area
+#git status
+
+#git commit -m "message"
+
+pull from the online repository
+
+#git remote add origin <link of your central repository you copied>
+#git pull origin master
+
+push to the online repository
+#git push <repository link you copied>
+
+make branches
+
+#git branch <branch-name>
+#git checkout <branch_name>
+#git commit
+
+check branches
+#git branch
+
+merge branches
+#git merge <branch_name>
+#git commit
+#git push origin <branchname>
+to force merge 
+#git merge --allow-unrelated-histories
+
+delete a branch
+#git branch -D <branchname>
+#git push origin --delete <branchname>
