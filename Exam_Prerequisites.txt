@@ -1,0 +1,16 @@
+3 Virtual Machines Ubuntu 16 (64 bit iso)
+RAM - 3 GB each
+CPU Processrors - 2 or 4 each
+Common Password -> Password123
+All Machines should be under same custom VMNet(NAT mode)
+As soon as you get machine - get internet working on the same
+Fire "dhclient" to get IP address from DHCP server.
+
+When created - Take snapshots - named - Fresh VM
+Under Description of snapshots - type the following:
+	->	Username - Password e.g - dac - Password123
+	->  Username - Password e.g - root - Password123
+
+For the second batch who turns up for exam - Go to snapshot manager and check for details of snapshot - you should get username and password details there.
+
+
